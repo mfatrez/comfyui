@@ -6,6 +6,8 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
     steps:
       -
         name: Set up QEMU
@@ -27,4 +29,6 @@ jobs:
           context: "{{defaultContext}}:docker"
           platforms: linux/amd64
           push: true
-          tags: ghcr.io/mfatrez/comfyui:latest
+          tags: |
+            ghcr.io/${{ github.repository }}:${{ github.sha }}
+            ghcr.io/${{ github.repository }}:latest
