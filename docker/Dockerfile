@@ -1,4 +1,4 @@
-FROM nvidia/cuda:12.1.0-runtime-ubuntu20.04
+FROM nvidia/cuda:12.4.0-runtime-ubuntu20.04
 ENV TZ=Europe/Paris
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -14,7 +14,7 @@ RUN apt-get update \
 RUN apt-get install -y python3.10-dev
 
 # torch and xformers
-RUN pip install torch==2.3.1 torchvision==0.18.1 torchaudio==2.3.1 --extra-index-url https://download.pytorch.org/whl/cu121
+RUN pip install torch==2.3.1 torchvision==0.18.1 torchaudio==2.3.1 --extra-index-url https://download.pytorch.org/whl/cu124
 
 ARG COMFYUI_VERSION
 ARG COMFYUI_MANAGER_VERSION
