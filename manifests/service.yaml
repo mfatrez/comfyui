@@ -1,0 +1,21 @@
+---
+# Source: comfyui/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: comfyui
+  namespace: comfyui
+  labels:
+    app.kubernetes.io/name: comfyui
+    app.kubernetes.io/instance: comfyui
+spec:
+  type: LoadBalancer
+  ports:
+    - name: http
+      nodePort: 31228
+      port: 80
+      protocol: TCP
+      targetPort: http
+  selector:
+    app.kubernetes.io/name: comfyui
+    app.kubernetes.io/instance: comfyui

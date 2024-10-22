@@ -1,0 +1,29 @@
+---
+# Source: comfyui/templates/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: comfyui
+  namespace: comfyui
+  labels:
+    app.kubernetes.io/name: comfyui
+    app.kubernetes.io/instance: comfyui
+  annotations:
+    cert-manager.io/issuer: ca-issuer
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: comfyui.mon-lab.lan
+      http:
+        paths:
+          - backend:
+              service:
+                name: comfyui
+                port:
+                  name: http
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - comfyui.mon-lab.lan
+      secretName: comfyui-tls

@@ -1,0 +1,68 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: comfyui
+  namespace: comfyui
+  labels:
+    app.kubernetes.io/name: comfyui
+    app.kubernetes.io/instance: comfyui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: comfyui
+      app.kubernetes.io/instance: comfyui
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: comfyui
+        app.kubernetes.io/instance: comfyui
+    spec:
+      runtimeClassName: nvidia
+      imagePullSecrets:
+        - name: ghcr-secret
+      serviceAccountName: comfyui
+      securityContext:
+        {}
+      containers:
+        - name: comfyui
+          securityContext:
+            {}
+          image: "ghcr.io/mfatrez/comfyui:latest"
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 50000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /queue
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /queue
+              port: http
+          resources:
+            limits:
+              nvidia.com/gpu: "1"
+          volumeMounts:
+            - name: model-storage
+              mountPath: /home/workspace/ComfyUI/models
+              subPath: models
+            - name: tmp
+              mountPath: /home/workspace/ComfyUI/input
+              subPath: input
+            - name: tmp
+              mountPath: /home/workspace/ComfyUI/output
+              subPath: output
+            - name: tmp
+              mountPath: /home/workspace/ComfyUI/temp
+              subPath: temp
+      volumes:
+        - name: model-storage
+          persistentVolumeClaim:
+            claimName: comfyui-model-pvc
+        - name: tmp
+          persistentVolumeClaim:
+            claimName: comfyui-tmp-pvc
