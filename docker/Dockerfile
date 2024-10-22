@@ -29,12 +29,12 @@ RUN cd ComfyUI/custom_nodes \
     && git checkout ${COMFYUI_MANAGER_VERSION}
 
 # install dependencies
-RUN pip install urllib3==1.26.20
 RUN pip install -r ComfyUI/requirements.txt
+RUN pip install urllib3==1.26.20
 
 # RUN
 ENV PYTHON=python3.10
 ENV COMFYUI_PATH=/home/workspace/ComfyUI
 ENV PATH="$PATH:$COMFYUI_PATH"
 WORKDIR $COMFYUI_PATH
-CMD ["/bin/bash", "-c", "$PYTHON main.py --listen 0.0.0.0 --port 50000 --multi-user"]
+CMD ["/bin/bash", "-c", "$PYTHON main.py --listen 0.0.0.0 --port 50000"]
