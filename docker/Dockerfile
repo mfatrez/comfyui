@@ -30,7 +30,7 @@ RUN cd ComfyUI/custom_nodes \
 
 # install dependencies
 RUN pip install -r ComfyUI/requirements.txt
-RUN pip install urllib3==1.26.20
+RUN pip install urllib3==1.26.20 numpy==2.1.2 PyYAML==6.0.2 toml==0.10.2
 
 # RUN
 ENV PYTHON=python3.10
