@@ -37,4 +37,4 @@ ENV PYTHON=python3.10
 ENV COMFYUI_PATH=/home/workspace/ComfyUI
 ENV PATH="$PATH:$COMFYUI_PATH"
 WORKDIR $COMFYUI_PATH
-CMD ["/bin/bash", "-c", "$PYTHON main.py --listen 0.0.0.0 --port 50000"]
+CMD ["/bin/bash", "-c", "$PYTHON main.py --listen 0.0.0.0 --port 31767"]
