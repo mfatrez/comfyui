@@ -14,7 +14,7 @@ RUN apt-get update \
 RUN apt-get install -y python3.10-dev
 
 # torch and xformers
-RUN pip install torch==2.3.1 torchvision==0.18.1 torchaudio==2.3.1 --extra-index-url https://download.pytorch.org/whl/cu124
+RUN pip install torch==2.4.1 torchvision==0.19.1 torchaudio==2.4.1 --extra-index-url https://download.pytorch.org/whl/cu124
 
 ARG COMFYUI_VERSION
 ARG COMFYUI_MANAGER_VERSION
