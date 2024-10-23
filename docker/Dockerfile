@@ -32,9 +32,11 @@ RUN cd ComfyUI/custom_nodes \
 RUN pip install -r ComfyUI/requirements.txt
 RUN pip install urllib3==1.26.20 numpy==2.1.2 PyYAML==6.0.2 toml==0.10.2
 
+EXPOSE 8848
+
 # RUN
 ENV PYTHON=python3.10
 ENV COMFYUI_PATH=/home/workspace/ComfyUI
 ENV PATH="$PATH:$COMFYUI_PATH"
 WORKDIR $COMFYUI_PATH
-CMD ["/bin/bash", "-c", "$PYTHON main.py --listen 0.0.0.0 --port 31767"]
+CMD ["/bin/bash", "-c", "$PYTHON main.py --listen 0.0.0.0 --port 8848"]
