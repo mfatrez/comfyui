@@ -25,4 +25,5 @@ RUN pip install urllib3==1.26.20 numpy==2.1.2 PyYAML==6.0.2 toml==0.10.2
 EXPOSE 8848
 
 # RUN
-CMD ["python3", "-u", "/home/workspace/ComfyUI/main.py", "--listen", "0.0.0.0", "--port", "8848"]
+WORKDIR /home/workspace/ComfyUI/
+CMD ["/bin/bash", "-c", "python3.10", "/home/workspace/ComfyUI/main.py", "--listen", "0.0.0.0", "--port", "8848"]
