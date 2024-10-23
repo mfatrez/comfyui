@@ -23,10 +23,6 @@ ARG COMFYUI_MANAGER_VERSION
 RUN git clone https://github.com/comfyanonymous/ComfyUI.git \
     && cd ComfyUI \
     && git checkout ${COMFYUI_VERSION}
-RUN cd ComfyUI/custom_nodes \
-    && git clone https://github.com/ltdrdata/ComfyUI-Manager.git \
-    && cd ComfyUI-Manager \
-    && git checkout ${COMFYUI_MANAGER_VERSION}
 
 # install dependencies
 RUN pip install -r ComfyUI/requirements.txt
