@@ -4,11 +4,13 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 WORKDIR /home/workspace
 
-RUN apt-get update && apt-get install -y \
-    git \
-    python3.10 \
-    python3.10-dev \
-    python3-pip
+RUN apt-get update \
+    && apt-get install -y mesa-utils libgl1-mesa-dri libgtkgl2.0-dev libgtkglext1-dev git software-properties-common apt-utils \
+    && add-apt-repository ppa:deadsnakes/ppa \
+    && apt-get update \
+    && apt install -y python3.10 python3.10-distutils curl \
+    && curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10
+RUN apt-get install -y python3.10-dev
 
 RUN pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu124
 
