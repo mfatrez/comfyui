@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
     python3.10 \
     python3-pip
 
-RUN pip install torch==2.4.1 torchvision==0.19.1 torchaudio==2.4.1 --extra-index-url https://download.pytorch.org/whl/cu124
+RUN pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu124
 
 RUN git clone https://github.com/comfyanonymous/ComfyUI.git \
     && cd ComfyUI \
