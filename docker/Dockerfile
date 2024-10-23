@@ -12,7 +12,10 @@ RUN apt-get update \
     && curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10
 RUN apt-get install -y python3.10-dev
 
-RUN pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu124
+RUN pip install torch==2.4.1 torchvision==0.19.1 torchaudio==2.4.1 --extra-index-url https://download.pytorch.org/whl/cu124
+
+ARG COMFYUI_VERSION
+ARG COMFYUI_MANAGER_VERSION
 
 RUN git clone https://github.com/comfyanonymous/ComfyUI.git \
     && cd ComfyUI \
@@ -25,5 +28,8 @@ RUN pip install urllib3==1.26.20 numpy==2.1.2 PyYAML==6.0.2 toml==0.10.2
 EXPOSE 8848
 
 # RUN
-WORKDIR /home/workspace/ComfyUI/
-CMD ["/bin/bash", "-c", "python3.10", "/home/workspace/ComfyUI/main.py", "--listen", "0.0.0.0", "--port", "8848"]
+ENV PYTHON=python3.10
+ENV COMFYUI_PATH=/home/workspace/ComfyUI
+ENV PATH="$PATH:$COMFYUI_PATH"
+WORKDIR $COMFYUI_PATH
+CMD ["/bin/bash", "-c", "$PYTHON", "main.py", "--listen", "0.0.0.0", "--port", "8848"]
