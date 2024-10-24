@@ -37,7 +37,8 @@ RUN pip install matplotlib \
                 ultralytics              \
                 lpips                    \
                 future==0.18.3           \
-                basicsr
+                basicsr                  \
+                pytube
 
 # RUN
 ENV PYTHON=python3.10
