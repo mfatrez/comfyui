@@ -26,7 +26,8 @@ RUN git clone https://github.com/comfyanonymous/ComfyUI.git \
 
 # install dependencies
 RUN pip install -r ComfyUI/requirements.txt
-#RUN pip install urllib3==1.26.20 numpy==2.1.2 PyYAML==6.0.2 toml==0.10.2
+RUN pip install matplotlib opencv-python==4.10.0.84 imageio-ffmpeg==0.5.1 numpy==1.26.4
+RUN pip install albumentations>=1.4.16 insightface==0.7.3 onnx>=1.14.0 segment_anything ultralytics 
 
 # RUN
 ENV PYTHON=python3.10
